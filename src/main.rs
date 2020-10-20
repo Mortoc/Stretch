@@ -1,7 +1,8 @@
 #![warn(missing_docs)]
 
 use clap::{App, Arg};
-use std::fs;
+use std::path::{Path, PathBuf};
+use std::{env, fs};
 use stretch::start_main_loop;
 
 fn main() {
@@ -29,6 +30,16 @@ fn main() {
     };
 
     let config = serde_json::from_str(&config_string).expect("Unable to parse config json");
+
+    // Set the current working directory to where the config lives so that all the paths in the
+    // config file can be relative to itself
+    let mut dir = env::current_dir().unwrap();
+    dir.push(config_path);
+    dir.pop();
+    env::set_current_dir(dir.clone()).expect(&format!(
+        "Unable to set working directory to `{}`",
+        dir.display()
+    ));
 
     start_main_loop(&config);
 }
