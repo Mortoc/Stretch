@@ -4,6 +4,6 @@
   },
   "data_store": {
     "type": "LocalDisk",
-    "root": "../assets"
+    "root": "../default_assets"
   }
 }
