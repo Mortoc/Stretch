@@ -35,7 +35,7 @@ fn main() {
     // config file can be relative to itself
     let mut dir = env::current_dir().unwrap();
     dir.push(config_path);
-    dir.pop();
+    dir.pop(); // pop the config file name
     env::set_current_dir(dir.clone()).expect(&format!(
         "Unable to set working directory to `{}`",
         dir.display()

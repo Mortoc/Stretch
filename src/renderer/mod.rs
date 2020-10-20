@@ -2,12 +2,15 @@ use crate::sim::Simulation;
 use cgmath::*;
 use winit::error::ExternalError;
 
+pub mod color;
 pub mod web_renderer;
+
 use crate::config::{Config, RendererConfig};
 use futures::executor::block_on;
 use web_renderer::WebRenderer;
 use winit::window::Window;
 
+/// The Renderer is the provider for the selected graphics backend (WebGPU, Metal, etc)
 pub trait Renderer {
     fn resize(&mut self, new_size: &winit::dpi::PhysicalSize<u32>) -> Result<(), ExternalError>;
     fn render(&self, scene: &Simulation) -> Result<(), ExternalError>;
