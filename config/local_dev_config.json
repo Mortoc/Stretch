@@ -1,0 +1,9 @@
+{
+  "renderer": {
+    "type": "WebGPU"
+  },
+  "data_store": {
+    "type": "LocalDisk",
+    "root": "../assets"
+  }
+}
