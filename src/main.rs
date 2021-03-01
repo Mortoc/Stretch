@@ -1,7 +1,8 @@
+//! Stand-alone executable version of the Stretch game engine.
+
 #![warn(missing_docs)]
 
 use clap::{App, Arg};
-use std::path::{Path, PathBuf};
 use std::{env, fs};
 use stretch::start_main_loop;
 

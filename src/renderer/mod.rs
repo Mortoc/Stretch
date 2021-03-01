@@ -12,8 +12,8 @@ use winit::window::Window;
 
 /// The Renderer is the provider for the selected graphics backend (WebGPU, Metal, etc)
 pub trait Renderer {
-    fn resize(&mut self, new_size: &winit::dpi::PhysicalSize<u32>) -> Result<(), ExternalError>;
-    fn render(&self, scene: &Simulation) -> Result<(), ExternalError>;
+    fn resize(&mut self, new_size: &winit::dpi::PhysicalSize<u32>);
+    fn render(&self, scene: &Simulation);
 }
 
 pub fn build_renderer(config: &Config, window: &Window) -> Box<dyn Renderer> {

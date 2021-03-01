@@ -15,18 +15,16 @@ pub struct WebRenderer {
 }
 
 impl Renderer for WebRenderer {
-    fn resize(&mut self, new_size: &winit::dpi::PhysicalSize<u32>) -> Result<(), ExternalError> {
+    fn resize(&mut self, new_size: &winit::dpi::PhysicalSize<u32>) {
         self.size = *new_size;
         self.swap_chain_desc.width = new_size.width;
         self.swap_chain_desc.height = new_size.height;
         self.swap_chain = self
             .device
             .create_swap_chain(&self.surface, &self.swap_chain_desc);
-
-        Ok(())
     }
 
-    fn render(&self, scene: &Simulation) -> Result<(), ExternalError> {
+    fn render(&self, scene: &Simulation) {
         unimplemented!()
     }
 }
@@ -34,7 +32,6 @@ impl Renderer for WebRenderer {
 impl WebRenderer {
     pub async fn new(window: &Window) -> Self {
         let size = window.inner_size();
-
         let instance = Instance::new(BackendBit::PRIMARY);
         let surface = unsafe { instance.create_surface(window) };
         let adapter = instance

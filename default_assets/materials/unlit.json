@@ -1,6 +1,0 @@
-{
-  "display_name": "Unlit",
-  "uniforms": [],
-  "vert": "file://../shaders/unlit.vert.glsl",
-  "frag": "file://../shaders/unlit.frag.glsl"
-}

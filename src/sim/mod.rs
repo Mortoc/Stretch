@@ -12,9 +12,9 @@ pub struct Simulation {
 }
 
 impl Simulation {
-    pub fn new(config: &Config) -> Self {
+    pub async fn new(config: &Config) -> Self {
         Simulation {
-            data_store: build_data_store(&config),
+            data_store: build_data_store(&config).await,
             world: World::default(),
         }
     }

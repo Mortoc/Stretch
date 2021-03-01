@@ -1,13 +1,13 @@
+pub mod asset_manifest;
+pub mod asset_ref;
 pub mod materials;
 pub mod shaders;
 
-/// Trait Asset provides tracking information per session and across sessions for assets. Implementors
-/// are responsible for cleaning during Drop.
-pub trait Asset {
-    /// UUID for this asset unique to this session
-    fn instance_id(&self) -> u64;
+use slotmap::*;
 
-    /// Uniform Resource Identifier for this asset, deterministic across sessions. Typically based
-    /// on the path the asset was loaded from.
-    fn uri(&self) -> &str;
+/// Id type we can use to reference assets
+new_key_type! { pub struct AssetHandle; }
+
+pub enum AssetError {
+    PathNotFound(String),
 }

@@ -21,13 +21,14 @@ impl Default for RendererConfig {
 #[derive(Serialize, Deserialize, Clone)]
 #[serde(tag = "type")]
 pub enum DataStoreConfig {
-    LocalDisk { root: String },
+    LocalDisk { root: String, entry_scene: String },
 }
 
 impl Default for DataStoreConfig {
     fn default() -> Self {
         DataStoreConfig::LocalDisk {
-            root: "".to_string(),
+            root: String::from(""),
+            entry_scene: String::from(""),
         }
     }
 }

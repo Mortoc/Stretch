@@ -1,14 +1,34 @@
+//! The shaders module is responsible to representing `Shader` and `ShaderProgram` assets.
+//!
+//! A `ShaderProgram` is a compiled GPU program for a single stage of the graphics
+//! pipeline (vertex, fragment, compute, etc)
+//!
+//! A `Shader` is a complete set of `ShaderPrograms` that represent a render pipeline (typically at
+//! least consisting of a vertex and a fragment stage).
+
+use crate::assets::{Asset, AssetHandle};
 use crate::renderer::color::*;
 use cgmath::{Vector2, Vector3, Vector4};
 use serde::{Deserialize, Serialize};
 use slotmap::*;
 
 new_key_type! { pub struct ShaderKey; }
+new_key_type! { pub struct ShaderProgramKey; }
 
 pub struct Shader {
     display_name: String,
-    uri: String,
+    uri: AssetHandle,
     instance_id: u64,
+}
+
+impl Asset for Shader {
+    fn instance_id(&self) -> u64 {
+        self.instance_id
+    }
+
+    fn uri(&self) -> AssetHandle {
+        self.uri
+    }
 }
 
 /// Named values that can be bound to a shader program
